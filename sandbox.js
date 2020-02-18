@@ -71,6 +71,10 @@ title.style.margin = '';   //删除margin属性。
 //当有很多个p tag的时候
 //p.textContent p tag里面所有文字，被隐藏的也可以看见
 //p.innerText   p tag 里面的文字，被隐藏了的文字看不见。
+
+//div.innerHTML  可以取得div里面的文字，也可以取得div里面的元素(包含tag)。
+//当 用innerHTML 来给div赋值时可以跟上tag<p>hahahah</p>。
+
 const paras = document.querySelectorAll('p');
 
 paras.forEach(p => {
