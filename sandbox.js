@@ -1,17 +1,11 @@
-const button = document.querySelector('button');
-const popup = document.querySelector('.popup-wrapper');
-const close = document.querySelector('.popup-close');
+const form = document.querySelector('.signup-form');
+// const username = document.querySelector('#username');
 
-button.addEventListener('click', () => {
-  popup.style.display = 'block';
-});
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  // console.log('form submitted');
+  // console.log(username.value);
 
-close.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
-
-popup.addEventListener('click', (e) => {
-  if(e.target.className === 'popup-wrapper'){
-    popup.style.display = 'none';
-  }
+  //不管是id 还是name是username 都可以这样用。
+  console.log(form.username.value);
 });
