@@ -1,26 +1,31 @@
 const form = document.querySelector('.signup-form');
+const feedback = document.querySelector('.feedback');
+const usernamePattern = /^[a-zA-Z]{6,12}$/;
 
+// validation
 form.addEventListener('submit', e => {
   e.preventDefault();
-  console.log(form.username.value);
+
+  const username =  form.username.value;
+
+  if(usernamePattern.test(username)){
+    feedback.textContent = 'that username is valid!'
+  } else {
+    feedback.textContent = 'username must contain only letters & be between 6 & 12 characters';
+  }
 });
 
-// testing RegEx
-
-const username = 'shaunyp';
-const pattern = /^[a-z]{6,}$/;
-
-//test return false or true
-// let result = pattern.test(username);
-
-// if(result){
-//   console.log('regex test passed :)');
-// } else {
-//   console.log('regex test failed :(');
-// }
-
-
-//seach return the position.-1 mean do not  get a match .
-let result = username.search(pattern);
-
-console.log(result);
+// live feedback
+form.username.addEventListener('keyup', e => {
+    //通过 打印e 可以看到。按了哪一个键。
+    console.log(e);
+    
+  // console.log(e.target.value, form.username.value);
+  if(usernamePattern.test(e.target.value)){
+    //console.log('passed');
+    form.username.setAttribute('class', 'success');
+  } else {
+    //console.log('failed');
+    form.username.setAttribute('class', 'error');
+  }
+});
