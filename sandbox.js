@@ -20,7 +20,7 @@ const getTodos = (resource, callback) => {
   };
   
 
-  //这样可以一次调出 json文件夹里的三个文件，但是这样写会很难理解，
+  //这样可以依次调出 json文件夹里的三个文件，但是这样写会很难理解，
   //可以用promise 来重写。
   getTodos('json/luigi.json', (err, data) => {
     console.log(data);
