@@ -20,45 +20,16 @@ const getTodos = (resource) => {
   
   };
   
+
+  //一个catch 就可以catch全部的error
   getTodos('json/luigi.json').then(data => {
-    console.log('promise resolved:', data);
-  }).catch(err => {
-    console.log('promise rejected:', err);
-  });
-  
-
-
-  //伪代码
-  // promise example
-  const getSomething = () => {
-  
-    //resolve 跟 reject 这两个参数是规定好的。只能这样用
-    return new Promise((resolve, reject) => {
-
-      // 首先获取数据do something (fetch data)
-
-      //当成功取得数据，使用resolve方法
-      // resolve('some data');
-
-      //当取得数据失败 使用reject方法
-      reject('some error');
-    });
-  
-  };
-  
-  //使用promise 方法一
-
-  // getSomething().then(data => {
-  //   console.log('promise resolved:', data);
-  // }, err => {
-  //   console.log('promise rejected:', err);
-  // });
-  
-
-  //使用promise 方法二
-
-  getSomething().then(data => {
-    console.log('promise resolved:', data);
+    console.log('promise 1 resolved:', data);
+    return getTodos('json/mario.json');
+  }).then(data => {
+    console.log('promise 2 resolved:', data);
+    return getTodos('json/shaun.json');
+  }).then(data => {
+    console.log('promise 3 resolved:', data);
   }).catch(err => {
     console.log('promise rejected:', err);
   });
