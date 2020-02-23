@@ -1,32 +1,39 @@
-const request=new XMLHttpRequest();
-//first argument is the type of request
-//second argument is the endpoint url
-request.open("GET","https://jsonplaceholder.typicode.com/todos/");
-request.send();
-
-//console --- Network ---- todos/----response 可以查看get到的数据。
-
-//每当readyState 发生改变这个方法就会触发。
-request.addEventListener("readystatechange",()=>{
-    // console.log(request,request.readyState);
-    if(request.readyState===4 && request.status===200){
-        console.log(request.responseText);
+const getData=(callback)=>{
+    const request=new XMLHttpRequest();
+    request.open("GET","https://jsonplaceholder.typicode.com/todos/1");
+    request.send();
+    
+    request.addEventListener("readystatechange",()=>{
+        if(request.readyState===4 && request.status===200){
+            //在主函数里面给callback函数传参数。这种情况下error为undefined
+            callback(request.responseText,undefined);
+            
+        }else if(request.readyState===4){
+            //在主函数里面给callback函数传参数。这种情况下data为undefined
+            callback(undefined,"have no data");
+            
+        }
         
-    }else if(request.readyState===4){
-        console.log("can not find data");
+    });
+}
+
+console.log(1);
+console.log(2);
+
+
+//callback方法里面有两种情况，获得数据，得到error
+//这是一个异步方法。
+getData((data,error)=>{
+    // console.log(data,error);
+    if(error){
+        console.log(error);
+        
+    }else{
+        console.log(data);
         
     }
-    
-})
+});
 
-// readstatechange 所有字母都小写。
-// request.readyState  有5个数。0，1，2，3，4.
-// 0	UNSENT	クライアントは作成済み。open() はまだ呼ばれていない。
-// 1	OPENED	open() が呼び出し済み。
-// 2	HEADERS_RECEIVED	send() が呼び出し済みで、ヘッダーとステータスが利用可能。
-// 3	LOADING	ダウンロード中。responseText には部分データが入っている。
-// 4	DONE	操作が完了した。
+console.log(3);
+console.log(4);
 
-
-//只判断readyState===4是不够的。因为当endpoint url出错时，request.readyState会正常显示，但是却得不到数据。status显示为404
-//这时就要多判断一步status ===200.表示一切正常
