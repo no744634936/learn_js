@@ -1,33 +1,64 @@
+const getTodos = (resource) => {
 
-const getTodos = (resource, callback) => {
-
-    const request = new XMLHttpRequest();
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
   
-    request.addEventListener('readystatechange', () => {
-  
-      if(request.readyState === 4 && request.status === 200){
-        const data = JSON.parse(request.responseText);
-        callback(undefined, data);
-      } else if (request.readyState === 4){
-        callback('could not fetch the data', undefined);
-      }
-  
-    });
+      request.addEventListener('readystatechange', () => {
     
-    request.open('GET', resource);
-    request.send();
+        if(request.readyState === 4 && request.status === 200){
+          const data = JSON.parse(request.responseText);
+          resolve(data);
+        } else if (request.readyState === 4){
+          reject('could not fetch the data');
+        }
+    
+      });
+      
+      request.open('GET', resource);
+      request.send();
+    });
   
   };
   
+  getTodos('json/luigi.json').then(data => {
+    console.log('promise resolved:', data);
+  }).catch(err => {
+    console.log('promise rejected:', err);
+  });
+  
 
-  //这样可以依次调出 json文件夹里的三个文件，但是这样写会很难理解，
-  //可以用promise 来重写。
-  getTodos('json/luigi.json', (err, data) => {
-    console.log(data);
-    getTodos('json/mario.json', (err, data) => {
-      console.log(data);
-      getTodos('json/shaun.json', (err, data) => {
-        console.log(data);
-      });
+
+  //伪代码
+  // promise example
+  const getSomething = () => {
+  
+    //resolve 跟 reject 这两个参数是规定好的。只能这样用
+    return new Promise((resolve, reject) => {
+
+      // 首先获取数据do something (fetch data)
+
+      //当成功取得数据，使用resolve方法
+      // resolve('some data');
+
+      //当取得数据失败 使用reject方法
+      reject('some error');
     });
+  
+  };
+  
+  //使用promise 方法一
+
+  // getSomething().then(data => {
+  //   console.log('promise resolved:', data);
+  // }, err => {
+  //   console.log('promise rejected:', err);
+  // });
+  
+
+  //使用promise 方法二
+
+  getSomething().then(data => {
+    console.log('promise resolved:', data);
+  }).catch(err => {
+    console.log('promise rejected:', err);
   });
