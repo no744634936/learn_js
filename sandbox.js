@@ -1,35 +1,33 @@
-const getData=(callback)=>{
-    const request=new XMLHttpRequest();
-    // request.open("GET","https://jsonplaceholder.typicode.com/todos");
-    //取得不了本地的json。因为cros的缘故。必须在服务器上才能取得。
-    request.open("GET","my_json.json");
-    request.send();
-    
-    request.addEventListener("readystatechange",()=>{
-        if(request.readyState===4 && request.status===200){
-            // json is an array ,elements are object
-            //this takes a json string and convert that json string into js object
-            //when we write json ,everything have to be in double quote.number ok.
-            //json里的最后一个元素没有逗号。
-            const data=JSON.parse(request.responseText);
-            callback(data,undefined);
-            
-        }else if(request.readyState===4){
-            callback(undefined,"have no data");
-            
-        }
-        
+
+const getTodos = (resource, callback) => {
+
+    const request = new XMLHttpRequest();
+  
+    request.addEventListener('readystatechange', () => {
+  
+      if(request.readyState === 4 && request.status === 200){
+        const data = JSON.parse(request.responseText);
+        callback(undefined, data);
+      } else if (request.readyState === 4){
+        callback('could not fetch the data', undefined);
+      }
+  
     });
-}
+    
+    request.open('GET', resource);
+    request.send();
+  
+  };
+  
 
-
-getData((data,error)=>{
-    if(error){
-        console.log(error);
-        
-    }else{
+  //这样可以一次调出 json文件夹里的三个文件，但是这样写会很难理解，
+  //可以用promise 来重写。
+  getTodos('json/luigi.json', (err, data) => {
+    console.log(data);
+    getTodos('json/mario.json', (err, data) => {
+      console.log(data);
+      getTodos('json/shaun.json', (err, data) => {
         console.log(data);
-        
-    }
-});
-
+      });
+    });
+  });
