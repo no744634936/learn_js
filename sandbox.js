@@ -1,35 +1,11 @@
-const getTodos = (resource) => {
-
-    return new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest();
-  
-      request.addEventListener('readystatechange', () => {
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+    // console.log(response);
+    // console.log(response.json());
     
-        if(request.readyState === 4 && request.status === 200){
-          const data = JSON.parse(request.responseText);
-          resolve(data);
-        } else if (request.readyState === 4){
-          reject('could not fetch the data');
-        }
-    
-      });
-      
-      request.open('GET', resource);
-      request.send();
-    });
-  
-  };
-  
-
-  //一个catch 就可以catch全部的error
-  getTodos('json/luigi.json').then(data => {
-    console.log('promise 1 resolved:', data);
-    return getTodos('json/mario.json');
+    //response.json() 返回的是一个promise 所以要用 return 将数据data传给下一个then
+    return response.json();
   }).then(data => {
-    console.log('promise 2 resolved:', data);
-    return getTodos('json/shaun.json');
-  }).then(data => {
-    console.log('promise 3 resolved:', data);
+    console.log(data);
   }).catch(err => {
-    console.log('promise rejected:', err);
+    console.log(err);
   });
