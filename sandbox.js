@@ -1,46 +1,26 @@
-const now = new Date();
+const clock = document.querySelector('.clock');
 
-console.log(now);
-console.log(typeof now);
+const tick = () => {
 
-// years, months, days, times
-console.log('getFullYear:', now.getFullYear());
-console.log('getMonth (0-based):', now.getMonth());
-console.log('getDate:', now.getDate());
-console.log('getDay (0-based):', now.getDay());
-console.log('getHours:', now.getHours());
-console.log('getMinutes:', now.getMinutes());
-console.log('getSeconds:', now.getSeconds());
-
-// timestamps
-console.log('timestamp:', now.getTime());
-
-// date strings
-console.log(now.toDateString());
-console.log(now.toTimeString());
-console.log(now.toLocaleString());
-
-
-
+  const now = new Date();
   
-//const before = new Date('02/01/2019 7:30:59');
-const before = new Date('February 1 2019 7:30:59');
-const now = new Date();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const s = now.getSeconds();
 
-const diff = now.getTime() - before.getTime();
-// const diff = now - before;
+  const html = `
+    <span>${h}</span> :
+    <span>${m}</span> :
+    <span>${s}</span>
+  `;
 
-console.log(diff);
+  clock.innerHTML = html;
 
-//毫秒除以一千为一秒
-const mins = Math.round(diff / 1000 / 60);
-const hours = Math.round(mins / 60);
-const days = Math.round(hours / 24);
+};
 
-console.log(`the before date was ${mins} mins ago`);
-console.log(`the before date was ${hours} hours ago`);
-console.log(`the before date was ${days} days ago`);
+//一秒钟执行一次
+setInterval(tick, 1000);
 
-// converting timestamps to dates
-const timestamp = 1675938474990;
-console.log(new Date(timestamp));
+
+// setInterval…一定時間ごとに特定の処理を繰り返す
+// setTimeout…一定時間後に特定の処理をおこなう（繰り返さずに一度だけ
