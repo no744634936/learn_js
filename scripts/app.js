@@ -70,5 +70,22 @@ form.addEventListener("submit",e=>{
         })
         .catch(err=>{console.log(err);
         })
-
+    
+    //set local storage
+    localStorage.setItem("city",city);
 });
+
+
+//每当app启动，app就在用户网页localstorage里面寻找是否含有city。如果有就自动显示city相关信息，
+//当用户第一次输入一个城市的名字后，以后每次启动app就都显示这个城市的天气信息
+if(localStorage.getItem("city")){
+    let local_city=localStorage.getItem("city");
+
+    updateCity(local_city)
+    .then(data=>{
+        console.log(data);
+        updateUi(data);
+    })
+    .catch(err=>{console.log(err);
+    })
+}
