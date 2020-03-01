@@ -3,23 +3,9 @@ const card=document.querySelector(".card");
 const details=document.querySelector(".details");
 const time=document.querySelector("img.time")
 const icon=document.querySelector(".icon img")
+const forecast=new Forecast();
+// console.log(forecast);
 
-//因为呼叫的方法都是async方法，所以这个方法也是async
-const updateCity=async(city)=>{
-    const cityData= await getCity(city);    
-    const weather=await getWeather(cityData["Key"]);   
-
-    //缩写 
-    // return {
-    //     cityData,
-    //     weather
-    // };
-
-    return {
-        cityData:cityData,
-        weather:weather
-    };
-};
 
 const updateUi=(data)=>{
     // const cityData=data.cityData;
@@ -63,7 +49,7 @@ form.addEventListener("submit",e=>{
     form.reset();
 
     //change info
-    updateCity(city)
+    forecast.updateCity(city)
         .then(data=>{
             console.log(data);
             updateUi(data);
@@ -81,7 +67,7 @@ form.addEventListener("submit",e=>{
 if(localStorage.getItem("city")){
     let local_city=localStorage.getItem("city");
 
-    updateCity(local_city)
+    forecast.updateCity(local_city)
     .then(data=>{
         console.log(data);
         updateUi(data);

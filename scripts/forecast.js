@@ -1,39 +1,30 @@
-const key="PGI4g2cdM4lVImMFFjWdW3M3Qt4UBEGw";
-
-
-//get city information。这个世界上有两个东京，我要选的是日本的东京
-const getCity=async(city)=>{
-    const base="https://dataservice.accuweather.com/locations/v1/cities/search";
-    const query=`?apikey=${key}&q=${city}`;
-    const response = await fetch(base + query, {mode:"cors"});
-    const data=await response.json();
-    // console.log(data[0]);
-    return data[0];
+class Forecast{
+    constructor(){
+        this.key="PGI4g2cdM4lVImMFFjWdW3M3Qt4UBEGw";
+        this.cityURL="https://dataservice.accuweather.com/locations/v1/cities/search";
+        this.weatherURL="http://dataservice.accuweather.com/currentconditions/v1/";
+    }
+     getCity=async(city)=>{
+        const query=`?apikey=${this.key}&q=${city}`;
+        const response = await fetch(this.cityURL + query, {mode:"cors"});
+        const data=await response.json();
+        // console.log(data[0]);
+        return data[0];
+    }
+    getWeather=async(location_id)=>{
+        const query=`${location_id}?apikey=${this.key}`;
+        const response= await fetch(this.weatherURL+query,{mode:"cors"});
+        const data=await response.json();
+        // console.log(data);
+        return data;
+    }
+    //不应该叫updateCity 应该叫sendInfo
+    updateCity=async(city)=>{
+        const cityData= await this.getCity(city);    
+        const weather=await this.getWeather(cityData["Key"]);   
+        return {
+            cityData:cityData,
+            weather:weather
+        };
+    };
 }
-
-//get weather information.
-const getWeather=async(location_id)=>{
-    const url=`http://dataservice.accuweather.com/currentconditions/v1/${location_id}?apikey=${key}`;
-    const response= await fetch(url,{mode:"cors"});
-    const data=await response.json();
-    // console.log(data);
-    return data;
-}
-
-// getCity("tokyo")
-//     .then(data=>{console.log(data);})
-//     .catch(err=>{console.log(err);})
-
-// getWeather(226396);
-
-// getCity("tokyo")
-//     .then(data=>{
-//         //注意Key 要大写。getWeather 返回一个promise 所以可以再加一个then.记得要return
-//        return getWeather(data["Key"]);
-//     })
-//     .then(weather_data=>{
-//         console.log(weather_data[0]["WeatherText"]);
-//     })
-//     .catch(err=>{
-//         console.log(err);
-//     })
