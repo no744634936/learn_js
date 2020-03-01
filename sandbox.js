@@ -13,18 +13,31 @@ class User {
       return this;
     }
     incScore(){
-      //this.score 是constructor里面的this.score 
       this.score += 1;
       console.log(`${this.username} has a score of ${this.score}`);
       return this;
     }
   }
   
+  class Admin extends User {
+    
+    //管理员继承了user 而且有权限删除user。普通user 没有权限
+    deleteUser(user){
+      users = users.filter(u => u.username !== user.username);
+      return this; // allow method chaining
+    }
+  }
+  
   const userOne = new User('luigi', 'luigi@thenetninja.co.uk');
   const userTwo = new User('mario', 'mario@thenetninja.co.uk');
+  const userThree = new Admin('shaun', 'shaun@thenetninja.co.uk');
   
-  //要想使用methods chaining 就得return this。
-  userTwo.login()
-    .incScore()
-    .incScore()
-    .logout();
+  
+
+
+
+  let users = [userOne, userTwo, userThree];
+  console.log(users);
+  
+  userThree.deleteUser(userTwo);
+  console.log(users);
