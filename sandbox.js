@@ -1,38 +1,25 @@
-class User {
-    constructor(username, email){
-      this.username = username;
-      this.email = email;
-      this.score = 0;
-    }
-    login(){
-      console.log(`${this.username} just logged in`);
-      return this;
-    }
-    logout(){
-      console.log(`${this.username} just logged out`);
-      return this;
-    }
-    incScore(){
-      this.score += 1;
-      console.log(`${this.username} has a score of ${this.score}`);
-      return this;
-    }
+  
+// constructor functions
+// class User {
+//   constructor(username){
+//     this.username = username;
+//   }
+// }
+
+//javascript 特有的，比较老的写法。直接建立一个User constructor方法。注意User要大写。
+//然后还可以把login方法也放进去。
+//即用constructor 替代了class
+//这是比较老的写法，这里提到是为了引出 prototype。
+function User(username, email){
+    this.username = username;
+    this.email = email;
+    this.login = function(){
+      console.log(`${this.username} has logged in`);
+    };
   }
   
-  class Admin extends User {
-      //添加额外的属性。
-    constructor(username, email, title){
-      super(username, email);
-      this.title = title;
-    }
-    deleteUser(user){
-      users = users.filter(u => u.username !== user.username);
-      return this; // allow method chaining
-    }
-  }
+  const userOne = new User('ryu', 'ryu@thenetninja.co.uk');
+  const userTwo = new User('chun-li', 'chun.li@thenetninja.co.uk');
   
-  const userOne = new User('luigi', 'luigi@thenetninja.co.uk');
-  const userTwo = new User('mario', 'mario@thenetninja.co.uk');
-  const userThree = new Admin('shaun', 'shaun@thenetninja.co.uk', 'black-belt ninja');
-  
-  console.log(userThree.title);
+  console.log(userOne, userTwo);
+  userOne.login();
