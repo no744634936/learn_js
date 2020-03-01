@@ -1,30 +1,30 @@
-
-
-const userOne = {
-    username: 'ryu',
-    email: 'ryu@thenetninja.co.uk',
-    login(){
-      console.log('the user logged in');
-    },
-    logout(){
-      console.log('the user logged out');
+class User {
+    constructor(username, email){
+      this.username = username;
+      this.email = email;
+      this.score = 0;
     }
-  };
-  
-  console.log(userOne.email, userOne.username);
-  userOne.login();
-  
-  const userTwo = {
-    username: 'chun-li',
-    email: 'chun.li@thenetninja.co.uk',
     login(){
-      console.log('the user logged in');
-    },
-    logout(){
-      console.log('the user logged out');
+      console.log(`${this.username} just logged in`);
+      return this;
     }
-  };
+    logout(){
+      console.log(`${this.username} just logged out`);
+      return this;
+    }
+    incScore(){
+      //this.score 是constructor里面的this.score 
+      this.score += 1;
+      console.log(`${this.username} has a score of ${this.score}`);
+      return this;
+    }
+  }
   
-
-  //像上面那样重复复制代码是不行的，要做的是建立一个user object 来生产很多user
-  // const userThree = new User('shaun', 'shaun@thenetninja.co.uk');
+  const userOne = new User('luigi', 'luigi@thenetninja.co.uk');
+  const userTwo = new User('mario', 'mario@thenetninja.co.uk');
+  
+  //要想使用methods chaining 就得return this。
+  userTwo.login()
+    .incScore()
+    .incScore()
+    .logout();
