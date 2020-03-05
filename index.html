@@ -3,10 +3,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>JavaScript</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Databases (Firebase)</title>
+  <style>
+    .container{
+      max-width: 400px;
+    }
+  </style>
 </head>
 <body>
+  
+  <div class="container my-5">
+    <h2>Recipes</h2>
+    <ul>
+      <li>Mushroom pie</li>
+      <li>Veg curry</li>
+    </ul>
+    <form>
+      <label for="recipe">Add a new recipe:</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="recipe" required>
+        <div class="input-group-append">
+          <input type="submit" value="add" class="btn btn-outline-secondary">
+        </div>
+      </div>
+    </form>
+  </div>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+<!-- 要加上这一句 -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyB6SJOD7D6fu7NauIRpNZfEcY_vM3KIikM",
+    authDomain: "learn-js-2039b.firebaseapp.com",
+    databaseURL: "https://learn-js-2039b.firebaseio.com",
+    projectId: "learn-js-2039b",
+    storageBucket: "learn-js-2039b.appspot.com",
+    messagingSenderId: "361254852993",
+    appId: "1:361254852993:web:b753d181317332e2bfb080",
+    measurementId: "G-22WH6FRFMS"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  //还有加上这一句
+  const db=firebase.firestore();
+</script>
 
   <script src="sandbox.js"></script>
 </body>
