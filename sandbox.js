@@ -1,6 +1,6 @@
 const list=document.querySelector("ul");
 const form=document.querySelector("form");
-
+const button =document.querySelector("button");
 
 //获取数据。
 const getRecipe=(recipe,id)=>{
@@ -30,7 +30,7 @@ const deleteRecipe=(id)=>{
 
 
 //onSnapshot 查看数据库的跟新情况
-db.collection("recipes").onSnapshot(snapshot=>{
+const unsub=db.collection("recipes").onSnapshot(snapshot=>{
     // console.log(snapshot);
     console.log(snapshot.docChanges());
     snapshot.docChanges().forEach(change=>{
@@ -75,4 +75,12 @@ list.addEventListener("click",e=>{
         })
     }
 
+})
+
+
+//使实时监听器无效的方法就是将实时监听器赋值给一个变量，然后调用他。
+button.addEventListener("click",()=>{
+    unsub();
+    console.log("使实时监听器无效");
+    
 })
