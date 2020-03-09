@@ -17,27 +17,31 @@ const getRecipe=(recipe,id)=>{
     list.innerHTML+=html;
 }
 
-
-
-db.collection("recipes").get().then((resp)=>{
-    // console.log(resp);
-
-    //这样在firestore里面取数据是不行的。
-    //console.log(resp.docs[0]);
-
-    //只能这样取数据
-    //console.log(resp.docs[0].data());
-
-    resp.docs.forEach(doc=>{
-        // console.log(doc.data());
-        getRecipe(doc.data(),doc.id);
-        
+const deleteRecipe=(id)=>{
+    //querySelectorALL  注意是All
+    const recipes = document.querySelectorAll('li');
+    console.log(recipes);
+    recipes.forEach(recipe=>{
+        if(recipe.getAttribute("data-id")===id){
+            recipe.remove();
+        }
     })
-}).catch((error)=>{
-    console.log(error);
-    
-})
+}
 
+
+//onSnapshot 查看数据库的跟新情况
+db.collection("recipes").onSnapshot(snapshot=>{
+    // console.log(snapshot);
+    console.log(snapshot.docChanges());
+    snapshot.docChanges().forEach(change=>{
+        const doc=change.doc;
+        if(change.type==="added"){
+            getRecipe(doc.data(),doc.id);
+        }else if(change.type==="removed"){
+            deleteRecipe(doc.id);
+        }
+    })
+})
 
 //add data(document)
 form.addEventListener("submit",e=>{
