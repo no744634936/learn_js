@@ -27,7 +27,12 @@ class Chatroom{
     }
 
     getChats(callback_function){
-        this.chats.onSnapshot(snapshot=>{
+        //只监视room等于特定的room的数据。
+        //第一次用orderBy("created_at")的时候会报告错误说，需要建立index，点击错误后面跟的link，建立index即可
+        this.chats
+            .where("room","==",this.room)
+            .orderBy("created_at")
+            .onSnapshot(snapshot=>{
             snapshot.docChanges().forEach(change=>{
                 if(change.type==="added"){
                     //update the ui.这需要ui class里的方法来做。所以我现在要用一个callback function来做。
@@ -39,15 +44,9 @@ class Chatroom{
     }
 }
 
+//在这里可以改变room跟username
 const chatroom= new Chatroom("game","zhang");
-chatroom.addChat("hello zhang")
-    .then(()=>{
-        console.log("message added");
-    }).catch(err=>{
-        console.log(err);
-    })
 
-//这是一个real time listener。当数据库里的发生改变时触发
 chatroom.getChats((data)=>{
     console.log(data);
 })
