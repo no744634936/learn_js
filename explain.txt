@@ -4,3 +4,9 @@
 
 2，拿到数据之后通过ui表示出来。看app.js 文件
 
+3,update user name,
+  using local storage,so that when a user update username,
+  it is going to store that in local storage.
+  if they cross off the chat window or refresh the page 
+  then we will look for that name in local storage if it exists 
+  then automatically apply that name to the chatroom.
