@@ -1,3 +1,4 @@
+
 //adding new chat documents
 //setting up a real-time listener to get new chats
 //updating the username
@@ -61,6 +62,7 @@ class Chatroom{
     }
 }
 
+/*
 //在这里可以改变room跟username
 const chatroom= new Chatroom("game","zhang");
 
@@ -82,3 +84,4 @@ setTimeout(()=>{
 
     chatroom.addChat("hello");
 },10000)
+*/
