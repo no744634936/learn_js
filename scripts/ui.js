@@ -5,7 +5,6 @@ class ChatUI{
     constructor(list){
         this.list=list;
     }
-
     //render 的data是 getChats(callback_function) 里面callback_function的参数。
     render(data){
         const html=`
@@ -16,5 +15,8 @@ class ChatUI{
                 </li>
         `;
         this.list.innerHTML+=html;
+    }
+    clear(){
+        this.list.innerHTML="";
     }
 }
