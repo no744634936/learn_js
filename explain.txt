@@ -1,0 +1,47 @@
+1,download node.js
+  then node -v 
+
+2,cd to project folder
+  
+3,create a package.json file.
+    npm init
+   package.json will keep tracking the package that I have installed.
+
+4,install babel and babel cli
+  save them to developer dependencies
+  npm install @babel/core @babel/cli --save--dev
+
+5.install babel preset
+  this package allow us to use all of the latest javascipt feature 
+  npm install @babel/preset-env --save--dev
+
+6.建立 .babelrc 文件
+  并在里面写上
+    
+{
+  "presets": ["@babel/preset-env"]
+}
+
+when we run babel to convert our code babel will know to use @babel/preset-env package.
+
+
+
+7,create a before.js file and write some modern javascipt code
+
+    const greet=(name)=>{
+        console.log(`hello ${name}`);
+        
+    }
+
+    greet("zhang");
+
+8,convert
+  -o meaning output
+
+node_modules/.bin/babel before.js -o after.js
+
+
+9,由于node_modules 太大了。所以不要上传到github。可以把它删除。
+
+  别人如果要下载搭建相同的环境只需要执行，（因为有package.json 文件）
+  npm install 
