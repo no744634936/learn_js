@@ -9,11 +9,11 @@
 
 4,install babel and babel cli
   save them to developer dependencies
-  npm install @babel/core @babel/cli --save--dev
+  npm install @babel/core @babel/cli --save-dev
 
 5.install babel preset
   this package allow us to use all of the latest javascipt feature 
-  npm install @babel/preset-env --save--dev
+  npm install @babel/preset-env --save-dev
 
 6.建立 .babelrc 文件
   并在里面写上
