@@ -8,3 +8,6 @@
   "scripts": {
     "babel": "node_modules/.bin/babel ./src/index.js -w -o ./dist/assets/bundle.js"
   },
+  
+ 3、npm run babel
+ 　　这样就可以一直watch某个文件了。
