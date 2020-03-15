@@ -1,0 +1,10 @@
+1,写代码的时候在 src/index.js里写
+  然后convert到dist/assets/bundle.js 文件里去。
+
+
+2，修改文件后自动翻译。在package.json里面写上 "babel": "node_modules/.bin/babel ./src/index.js -w -o ./dist/assets/bundle.js"
+   注意 有 -w
+
+  "scripts": {
+    "babel": "node_modules/.bin/babel ./src/index.js -w -o ./dist/assets/bundle.js"
+  },
