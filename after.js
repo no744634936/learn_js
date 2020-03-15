@@ -5,3 +5,4 @@ var greet = function greet(name) {
 };
 
 greet("zhang");
+console.log("hahah");

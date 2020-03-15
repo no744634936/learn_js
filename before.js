@@ -5,3 +5,6 @@ const greet=(name)=>{
 
 greet("zhang");
 
+console.log("hahah");
+
+

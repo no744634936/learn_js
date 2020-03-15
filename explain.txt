@@ -3,7 +3,7 @@
 
 2,cd to project folder
   
-3,create a package.json file.
+3,create a package.json file and node_modules folder.
     npm init
    package.json will keep tracking the package that I have installed.
 
@@ -38,10 +38,10 @@ when we run babel to convert our code babel will know to use @babel/preset-env p
 8,convert
   -o meaning output
 
-node_modules/.bin/babel before.js -o after.js
+ node_modules/.bin/babel before.js -o after.js
 
 
-9,由于node_modules 太大了。所以不要上传到github。可以把它删除。
+9,由于node_modules 文件夹太大了。所以不要上传到github。可以把它删除。
 
   别人如果要下载搭建相同的环境只需要执行，（因为有package.json 文件）
   npm install 
