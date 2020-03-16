@@ -11,3 +11,6 @@
 
 4,为了不每修改一次就运行一次 npm run webpack
  可以在 "webpack": "node_modules/.bin/webpack" 后面加一个 -w
+ "webpack": "node_modules/.bin/webpack -w"
+
+ 然后再运行一次npm run webpack即可
