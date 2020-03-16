@@ -3,3 +3,5 @@ import users, { getPremUsers } from './data';
 
 const premUsers = getPremUsers(users);
 console.log(users, premUsers);
+
+console.log("test webpack watch file automatically");

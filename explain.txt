@@ -8,3 +8,6 @@
 2，index.js 文件呼叫
 
 3,npm run webpack
+
+4,为了不每修改一次就运行一次 npm run webpack
+ 可以在 "webpack": "node_modules/.bin/webpack" 后面加一个 -w
