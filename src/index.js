@@ -1,3 +1,3 @@
-const greet = name => {
-  console.log(`hello ${name}`);
-};
+import "./dom";
+
+console.log("index file");
