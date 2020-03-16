@@ -1,7 +1,5 @@
-import{styleBody,addTitle,contact} from "./dom";
+// import { styleBody, addTitle, contact } from './dom';
+import users, { getPremUsers } from './data';
 
-console.log("index file");
-
-addTitle("zhanghaifeng")
-
-console.log(contact);
+const premUsers = getPremUsers(users);
+console.log(users, premUsers);

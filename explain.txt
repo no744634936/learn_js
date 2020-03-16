@@ -2,14 +2,9 @@
 
 //------------------module
 
-1,src/dom.js 文件里写入代码
-  然后 src/index.json里面导入代码，
+1,建立一个data.js文件
+ 将users作为default输出。
 
-2，npm run webpack
-  就可以看到，dom.js和 index.js 的代码都被翻译到bundle.js文件里去了
+2，index.js 文件呼叫
 
-
-3,要想在index.js文件里使用dom.js module的方法。就必须要在方法名前加上，export
- 然后 在 index.js文件里写上 import{styleBody,addTitle} from "./dom";
-
-4, 不仅可以export 方法还可以export string 和 object，array
+3,npm run webpack
