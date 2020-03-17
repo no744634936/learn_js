@@ -1,0 +1,11 @@
+这相当于一个自建的框架。
+不用自己设置 webpack 跟babel之类的东西了。
+
+npm install
+
+npm run build
+
+npm run serve
+
+修改src里的文件后，就可以自动翻译到bundle.js文件了。
+
