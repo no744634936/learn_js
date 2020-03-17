@@ -1,16 +1,42 @@
+webpack dev server 的作用就是，将建立向xammp那样建立一个本地服务器，
+可以实时查看页面更新。不需要借助vscode 的插件来查看页面的更新。
 
 
-//------------------module
+１、npm install webpack-dev-server@3.2.1
+npm install webpack-dev-server --save-dev
 
-1,建立一个data.js文件
- 将users作为default输出。
 
-2，index.js 文件呼叫
 
-3,npm run webpack
+２、添加 devServer
 
-4,为了不每修改一次就运行一次 npm run webpack
- 可以在 "webpack": "node_modules/.bin/webpack" 后面加一个 -w
- "webpack": "node_modules/.bin/webpack -w"
+            const path = require('path');
+            module.exports = {
+            entry: './src/index.js',
+            output: {
+                path: path.resolve(__dirname, 'dist/assets'),
+                filename: 'bundle.js'
+            },
 
- 然后再运行一次npm run webpack即可
+            devServer:{
+                //告诉web dev server 要将哪一个文件夹里的index文件显示在浏览器上面。
+                contentBase:path.resolve(__direname,"dist"),
+                publicPath:"/assets",
+            }
+            };
+
+
+publicPath :指定dist文件夹里面的文件夹。
+publicPath的意思就是，index.html里绑定的js 文件的文件夹的位置。
+distフォルダがサーバーの起点となるディレクトリとし、
+その中にassetsフォルダがあり、そこのbundle.jsファイルをindex.htmlから呼ぶかたちです。
+
+3，package.json文件里写上  "serve": "webpack-dev-server"
+
+
+  "scripts": {
+    "babel": "node_modules/.bin/babel ./src/index.js -w -o ./dist/assets/bundle.js",
+    "webpack": "node_modules/.bin/webpack -w",
+    "serve": "webpack-dev-server"
+  },
+
+4,npm run serve
