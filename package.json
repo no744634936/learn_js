@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node_modules/.bin/webpack --mode production",
-     "serve": "webpack-dev-server --mode development"
-   },
+    "serve": "webpack-dev-server --mode development"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/no744634936/learn_js.git"
@@ -25,5 +25,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-loader": "^8.0.6"
+  }
 }

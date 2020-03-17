@@ -14,5 +14,17 @@ module.exports = {
       //告诉web dev server 要将哪一个文件夹里的index文件显示在浏览器上面。
       contentBase:path.resolve(__dirname,"dist"),
       publicPath:"/assets",
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }]
   }
 };

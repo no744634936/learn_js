@@ -1,24 +1,47 @@
+1, npm install babel-loader --save-dev
 
-  "scripts": {
-    "babel": "node_modules/.bin/babel ./src/index.js -w -o ./dist/assets/bundle.js",
-    "webpack": "node_modules/.bin/webpack -w",
-    "serve": "webpack-dev-server"
+2, 添加规则
+ module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }]
+  }
+-------------------------------------------
+
+
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist/assets'),
+    filename: 'bundle.js'
   },
-
-------------
-像上面那样写只会将index.js 文件上传到服务器的虚拟文件上面去（为了提高速度）,bundle.js文件并不会有任何改变。
-要想将index.js的内容转译到 bundle.js里面的话，就需要
-
-
-  "scripts": {
-   "build": "node_modules/.bin/webpack --mode production",
-    "serve": "webpack-dev-server --mode development"
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/assets/'
   },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }]
+  }
+};
 
 
-  npm run build  将index.js的内容转译到 bundle.js里面
 
-  npm run serve  在development模式下运行。
-
-
-
+3,npm run build
