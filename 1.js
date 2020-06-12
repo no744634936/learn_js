@@ -1,18 +1,26 @@
-//javascript中不要使用arguments 这个关键字
-//使用arguments 这个关键字会将compiler的数度减慢，
-//因为 arguments 的结果并不是一个object  是这个样子[Arguments] { '0': 'zhang', '1': 'wnag' }
-//arguments 在箭头函数不能使用
-
-function merry1(person1,person2){
-    console.log(arguments);
+if(5>4){
+    var secret="1234";
 }
 
-merry2=(person1,person2)=>{
-    console.log(arguments);
-    
+console.log(secret);   //可以获取到值， var提供的是function scope
+
+
+
+
+
+if(5>4){
+    let secret2="1234";
+}
+console.log(secret2);   //获取不到值， let提供的是block scope
+
+
+
+loop=()=>{
+    for(var i=1;i<5;i++){
+        console.log(i);
+    }
+
+    console.log("final",i);
 }
 
-
-
-merry1("zhang","wnag")
-merry2("zhang","wnag")
+loop();
