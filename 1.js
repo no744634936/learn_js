@@ -1,26 +1,25 @@
-if(5>4){
-    var secret="1234";
-}
+//this 有最基本的两种用法
 
-console.log(secret);   //可以获取到值， var提供的是function scope
+//give methods access to their object
 
-
-
-
-
-if(5>4){
-    let secret2="1234";
-}
-console.log(secret2);   //获取不到值， let提供的是block scope
-
-
-
-loop=()=>{
-    for(var i=1;i<5;i++){
-        console.log(i);
+const obj = {
+    name: 'Billy',
+    sing: function() {
+      return 'llala ' + this.name + '!'
+    },
+    singAgain: function() {
+      return this.sing()
     }
+  }
 
-    console.log("final",i);
-}
 
-loop();
+//excute same code for mutiple objects
+  function importantPerson() {
+    console.log(this.name)
+  }
+  
+  const name = 'Sunny';
+  const obj1 = { name: 'Cassy', importantPerson: importantPerson}
+  const obj2 = { name: 'Jacob', importantPerson: importantPerson}
+  
+  obj2.importantPerson()
