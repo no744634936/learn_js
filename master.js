@@ -24,3 +24,16 @@ let result = ninjas.pop();
 
 console.log(result);
 console.log(ninjas);
+
+
+
+//数组的类型是一个object
+//如何判断是不是一个数组用 Array.isArray() 方法来判定
+
+let type=typeof [];
+console.log(type);     //object
+
+
+let flag=Array.isArray([]);    
+console.log(flag);     //true
+
