@@ -64,7 +64,7 @@ let user = {
     logBlogs(){
       // access the blogs here
       // console.log(this);
-      // 这里的logBlogs函数不能写成箭头函数，因为箭头函数里的this是指向window的而不是指向user。
+      // 这里的logBlogs函数不能写成箭头函数，因为箭头函数里的this在浏览器的运行时是指向window的而不是指向user。
       console.log('this user has written these blogs:');
       this.blogs.forEach(blog => {
         console.log(blog);
