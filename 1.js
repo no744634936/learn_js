@@ -1,25 +1,43 @@
-//this 有最基本的两种用法
+//call()
 
-//give methods access to their object
+test=()=>{
+    console.log("hi");
+}
 
-const obj = {
-    name: 'Billy',
-    sing: function() {
-      return 'llala ' + this.name + '!'
-    },
-    singAgain: function() {
-      return this.sing()
+//在这种情况下test.call() 等于 test.apply(); 等于test();
+test();
+test.call();
+test.apply();
+
+
+
+
+//-------------------------------------------
+
+let wizard={
+    name:"Merlin",
+    health:50,
+    // heal:()=>{
+    //     console.log(this.health);  //undefined
+    //     this.health=100;           //object里不能使用箭头函数，因为箭头函数里的this没用
+    // },
+
+    // heal=()=>{                    //这种写法也不对
+    //     this.health=100; 
+    // },
+
+    heal(){
+        this.health=100; 
     }
-  }
+}
 
 
-//excute same code for mutiple objects
-  function importantPerson() {
-    console.log(this.name)
-  }
-  
-  const name = 'Sunny';
-  const obj1 = { name: 'Cassy', importantPerson: importantPerson}
-  const obj2 = { name: 'Jacob', importantPerson: importantPerson}
-  
-  obj2.importantPerson()
+
+wizard.heal();
+console.log(wizard.health);
+
+
+
+
+
+
