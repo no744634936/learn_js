@@ -1,17 +1,13 @@
-//function currying
-//感觉好麻烦。不直观。
+const character = {
+    name: 'Simon',
+    getCharacter() {
+      return this.name;
+    }
+  };
+  const giveMeTheCharacterNOW = character.getCharacter;
+   
+  //How Would you fix this?
+  console.log('?', giveMeTheCharacterNOW()); //this should return 'Simon' bud doesn't
 
-function multply(a,b){
-    return a*b;
-}
 
-
-//利用 multply方法里的代码。然后将参数a 的值设为2，
-//调用方法时传入参数b，这里的参数b为10 
-let multplyByTwo=multply.bind(this,2);
-console.log(multplyByTwo(10));          //20
-
-//
-let multplyByTen=multply.bind(this,10);
-console.log(multplyByTen(5));           //50
-
+//解决方法请看8.js

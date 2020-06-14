@@ -1,25 +1,15 @@
-let wizard={
-    name:"Merlin",
-    health:50,
-    heal(){
-        this.health=100; 
+
+//这里有一个巨大大坑，以后写代码一定要注意。
+
+let obj={
+    name:"zhanghaifeng",
+    sing(){
+        console.log("a",this);        //this 指向obj
+        let anotherfunc=function(){  
+            console.log("b",this);   //this 在浏览器运行的话指向window，在node.js里运行的指向global object
+        }
+        anotherfunc();
     }
 }
 
-console.log("wizard health before healing",wizard.health);  //50
-wizard.heal();
-console.log("wizard health after healing",wizard.health);  //100
-
-
-//超人需要治疗，但是我又不想重写一遍治疗方法,就可以向wizard借方法
-let superman={
-    name:"clark",
-    health:20,
-}
-
-console.log("superman health before healing",superman.health);  //20
-
-wizard.heal.call(superman);    //注意heal后面没有括号
-
-console.log("superman health after healing",superman.health); //100
-
+obj.sing()

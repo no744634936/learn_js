@@ -1,18 +1,3 @@
-//call()
-
-test=()=>{
-    console.log("hi");
-}
-
-//在这种情况下test.call() 等于 test.apply(); 等于test();
-test();
-test.call();
-test.apply();
-
-
-
-
-//-------------------------------------------
 
 let wizard={
     name:"Merlin",
@@ -26,7 +11,7 @@ let wizard={
     //     this.health=100; 
     // },
 
-    heal(){
+    heal(){                         //只有这种写法是对的
         this.health=100; 
     }
 }
