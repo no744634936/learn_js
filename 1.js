@@ -1,8 +1,5 @@
 //在javascrpt中，function 可以
 
-const { loadavg } = require("os");
-const { log } = require("util");
-
 //1，被赋值给一个变量
 
 let stuff=()=>{}
