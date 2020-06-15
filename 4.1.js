@@ -8,6 +8,7 @@ let obj={
         }
         anotherfunc()
     },
+    
     anotherfunc(){
         console.log("b",this);   
     }
